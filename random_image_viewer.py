@@ -12,9 +12,11 @@ image_files = [file for file in os.listdir(image_folder) if file.lower().endswit
 # Shuffle the image files
 image_to_skip = set()
 no_skip_imgs = len(image_files) - len(image_to_skip)
+round_num = 1
 
 while no_skip_imgs > 0:
     random.shuffle(image_files)
+    print("Round number:", round_num)
     print("Number of images:", no_skip_imgs)
 
     img_num = 1
@@ -27,10 +29,11 @@ while no_skip_imgs > 0:
         image = Image.open(image_path)
         image.show()
         
-        user_input = input(f"Image {img_num}/{len(image_files)}. Press 1 to skip, any key to continue: ")
+        user_input = input(f"Image {img_num}/{no_skip_imgs}. Press 1 to skip, any key to continue: ")
         img_num += 1
 
         if user_input == "1":
             image_to_skip.add(image_path)
 
     no_skip_imgs = len(image_files) - len(image_to_skip)
+    round_num += 1
